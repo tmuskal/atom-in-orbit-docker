@@ -25,13 +25,13 @@ RUN git apply /atom-in-orbit/scripts/patches/src/fix.patch
 RUN script/bootstrap
 # RUN npm install -g npm
 RUN script/build
-RUN npm install git+https://github.com/frdl/vm-frdl.git
+# RUN npm install git+https://github.com/frdl/vm-frdl.git
 
 WORKDIR /atom-in-orbit
 RUN echo '{"ATOM_SRC": "/atom"}' > /atom-in-orbit/config.local.json
 RUN npm install --only=dev
-ADD ./compile-cache.js.patch /atom-in-orbit/scripts/patches/src/compile-cache.js.patch
-ADD ./electron-shim-index.js /atom-in-orbit/shims/electron/index.js
+# ADD ./compile-cache.js.patch /atom-in-orbit/scripts/patches/src/compile-cache.js.patch
+# ADD ./electron-shim-index.js /atom-in-orbit/shims/electron/index.js
 ADD ./build.js /atom-in-orbit/scripts/build.js
 RUN npm run build
 ADD . /app

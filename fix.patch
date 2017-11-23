@@ -1,16 +1,19 @@
 diff --git a/package.json b/package.json
-index 643f344d0..d35f3e76c 100644
+index 643f344d0..d46deb79f 100644
 --- a/package.json
 +++ b/package.json
-@@ -18,7 +18,6 @@
+@@ -16,9 +16,9 @@
+   "dependencies": {
+     "async": "0.2.6",
      "atom-keymap": "7.1.1",
++    "atom-space-pen-views": "^2.2.0",
      "atom-ui": "0.4.1",
      "babel-core": "5.8.38",
 -    "cached-run-in-this-context": "0.4.1",
      "chai": "3.5.0",
      "chart.js": "^2.3.0",
      "clear-cut": "^2.0.1",
-@@ -66,99 +65,103 @@
+@@ -66,6 +66,7 @@
      "text-buffer": "9.4.0",
      "typescript-simple": "1.0.0",
      "underscore-plus": "^1.6.6",
@@ -18,9 +21,7 @@ index 643f344d0..d35f3e76c 100644
      "winreg": "^1.2.1",
      "yargs": "^3.23.0"
    },
--  "packageDependencies": {
-+"packageDependencies": {
-     "atom-dark-syntax": "0.28.0",
+@@ -74,91 +75,94 @@
      "atom-dark-ui": "0.53.0",
      "atom-light-syntax": "0.29.0",
      "atom-light-ui": "0.46.0",
