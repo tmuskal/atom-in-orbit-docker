@@ -8,17 +8,17 @@ RUN yum install -y \
     glibc-devel \
     git-core \
     libsecret-devel \
-    rpmdevtools
+    rpmdevtools \
+    libgnome-keyring-devel
 RUN yum -y groupinstall "X Software Development"
 ENV servePath=/atom-in-orbit
 RUN git clone https://github.com/atom/atom.git /atom
 
 WORKDIR /atom
 RUN npm config set python /usr/bin/python2 -g
-RUN git checkout f7d3f0210bf6ff1b4193d8a8b8a54c199b561bc2; 
-RUN npm install
-RUN yum install -y libgnome-keyring-devel
+# RUN git checkout f7d3f0210bf6ff1b4193d8a8b8a54c199b561bc2; 
 # RUN script/bootstrap
+RUN yum install -y libgtk-x11-2.0.so.0
 RUN script/build
 WORKDIR /
 RUN git clone https://github.com/facebook-atom/atom-in-orbit.git /atom-in-orbit.git
