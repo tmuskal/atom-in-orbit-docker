@@ -15,7 +15,7 @@ RUN git clone https://github.com/atom/atom.git /atom
 
 WORKDIR /atom
 RUN npm config set python /usr/bin/python2 -g
-# RUN git checkout f7d3f0210bf6ff1b4193d8a8b8a54c199b561bc2; 
+RUN git checkout 3a9fafc201dd6170a213d920a6eb82bec0d65b12
 # RUN script/bootstrap
 # RUN npm install
 RUN script/build
@@ -31,6 +31,6 @@ ADD . /app
 WORKDIR /app
 RUN npm install
 EXPOSE 3000
-ENV servePath=/atom-in-orbit/out/atom/
+ENV servePath=/
 CMD ["npm","start"]
 
