@@ -249,7 +249,7 @@ function build() {
     // Modules with native dependencies that we do not expect to exercise at runtime.
     'onig-reg-exp',
     'runas',
-    'less',
+    // 'less',
     'github',
     'snippets',
     'spelling-manager',
