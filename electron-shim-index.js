@@ -73,7 +73,7 @@ function dispatch(action, ...args) {
 }
 var wdw = {
         on() {},
-        loadSettingsJSON:"{}",
+        loadSettingsJSON:'{"resourcePath":"/atom", "atomHome":"/atom"}',
         isFullScreen() { return false; },
         getPosition() { return [0, 0]; },
         getSize() { return [800, 600]; },
