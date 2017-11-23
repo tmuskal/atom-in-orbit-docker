@@ -49,10 +49,10 @@ const {execFileSync, spawnSync} = require('child_process');
 // that these patches are unnecessary.
 
 // This is fixed in Atom master as of 089fa92117f5d0ead54b56ee208a2baa24d9c4e2.
-// execFileSync('patch', [
-//   path.join(ATOM_SRC, 'src/atom-environment.coffee'),
-//   path.join(root, 'scripts/patches/src/atom-environment.coffee.patch'),
-// ]);
+execFileSync('patch', [
+  path.join(ATOM_SRC, 'src/atom-environment.coffee'),
+  path.join(root, 'scripts/patches/src/atom-environment.coffee.patch'),
+]);
 
 // Custom change so we can export the functions that we need from compile-cache.
 execFileSync('patch', [
@@ -60,10 +60,10 @@ execFileSync('patch', [
   path.join(root, 'scripts/patches/src/compile-cache.js.patch'),
 ],{stdio:[process.stdin,process.stdout, process.stderr]});
 
-execFileSync('git', [
-  'apply',
-  '/atom-in-orbit/scripts/patches/src/fix.patch'
-],{stdio:[process.stdin,process.stdout, process.stderr],cwd:ATOM_SRC});
+// execFileSync('git', [
+//   'apply',
+//   '/atom-in-orbit/scripts/patches/src/fix.patch'
+// ],{stdio:[process.stdin,process.stdout, process.stderr],cwd:ATOM_SRC});
 
 const {COMPILERS, compileFileAtPath, setAtomHomeDirectory} = require(
   path.join(ATOM_SRC, 'src/compile-cache'));
