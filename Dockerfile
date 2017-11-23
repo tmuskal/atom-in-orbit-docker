@@ -22,10 +22,12 @@ RUN yum install -y libgtk-x11-2.0.so.0
 RUN yum install -y libgconf-2.so.4
 RUN script/build
 WORKDIR /
-RUN git clone https://github.com/facebook-atom/atom-in-orbit.git /atom-in-orbit.git
+RUN git clone https://github.com/facebook-atom/atom-in-orbit.git /atom-in-orbit
 WORKDIR /atom-in-orbit
 RUN echo '{"ATOM_SRC": "/atom"}' > /atom-in-orbit/config.local.json
-RUN npm install
+RUN npm install --only=dev
+ADD ./build.js /atom-in-orbit/scripts/build.js
+ADD ./compile-cache.js.patch /atom-in-orbit/scripts/patches/src/compile-cache.js.patch
 RUN npm run build
 ADD . /app
 WORKDIR /app
