@@ -1,0 +1,37 @@
+--- a/package.json
++++ b/package.json
+@@ -20,7 +20,6 @@
+     "atom-select-list": "^0.1.0",
+     "atom-ui": "0.4.1",
+     "babel-core": "5.8.38",
+-    "cached-run-in-this-context": "0.4.1",
+     "chai": "3.5.0",
+     "chart.js": "^2.3.0",
+     "clear-cut": "^2.0.2",
+@@ -71,6 +70,7 @@
+     "text-buffer": "13.1.15",
+     "typescript-simple": "1.0.0",
+     "underscore-plus": "^1.6.6",
++    "vm-shim": "git+https://github.com/frdl/vm-frdl.git",
+     "winreg": "^1.2.1",
+     "yargs": "^3.23.0"
+   },
+--- a/src/native-compile-cache.js
++++ b/src/native-compile-cache.js
+@@ -1,6 +1,6 @@
+ const Module = require('module')
+ const path = require('path')
+-const cachedVm = require('cached-run-in-this-context')
++const cachedVm = require('vm-shim')
+ const crypto = require('crypto')
+ 
+ function computeHash (contents) {
+@@ -64,7 +64,7 @@ class NativeCompileCache {
+       let compiledWrapper = null
+       if (self.cacheStore.has(cacheKey)) {
+         let buffer = self.cacheStore.get(cacheKey)
+-        let compilationResult = cachedVm.runInThisContextCached(wrapper, filename, buffer)
++        let compilationResult = cachedVm.runInThisContext(content, filename)
+         compiledWrapper = compilationResult.result
+         if (compilationResult.wasRejected) {
+           self.cacheStore.delete(cacheKey)

@@ -28,6 +28,7 @@ RUN echo '{"ATOM_SRC": "/atom"}' > /atom-in-orbit/config.local.json
 RUN npm install --only=dev
 ADD ./compile-cache.js.patch /atom-in-orbit/scripts/patches/src/compile-cache.js.patch
 ADD ./fix.patch /atom-in-orbit/scripts/patches/src/fix.patch
+ADD ./electron-shim-index.js /atom-in-orbit/shims/electron/index.js
 ADD ./build.js /atom-in-orbit/scripts/build.js
 RUN npm run build
 ADD . /app
