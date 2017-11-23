@@ -19,6 +19,7 @@ RUN npm config set python /usr/bin/python2 -g
 # RUN git checkout f7d3f0210bf6ff1b4193d8a8b8a54c199b561bc2; 
 # RUN script/bootstrap
 RUN yum install -y libgtk-x11-2.0.so.0
+RUN yum install -y libgconf-2.so.4
 RUN script/build
 WORKDIR /
 RUN git clone https://github.com/facebook-atom/atom-in-orbit.git /atom-in-orbit.git
