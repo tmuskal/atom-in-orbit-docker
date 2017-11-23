@@ -38,6 +38,6 @@ ADD . /app
 WORKDIR /app
 RUN npm install
 EXPOSE 3000
-ENV servePath=/
+ENV servePath=/atom-in-orbit/out/
 CMD ["npm","start"]
 
