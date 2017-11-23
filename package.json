@@ -1,0 +1,19 @@
+
+{
+  "name": "serve-dir-index",
+  "version": "1.0.0",
+  "description": "Nodejs app for indexing of directories and download files on click",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andre Kosak",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.13.4",
+    "http-server": "0.9.0",
+    "serve-index": "1.7.3",
+    "serve-static": "1.10.2"
+  }
+}
