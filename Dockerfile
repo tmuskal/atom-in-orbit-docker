@@ -1,4 +1,4 @@
-from nodesource/fedora24:6.3.1
+from nodesource/fedora21:4.2.6
 RUN yum clean all
 RUN yum install -y yum-plugin-ovl
 RUN yum install -y \

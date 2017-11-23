@@ -106,17 +106,18 @@ function build() {
 
   // fix npm 3 compat
 // get library path
-  // var lib = resolve(atomDir, 'node_modules')
+  var lib = resolve(atomDir, 'node_modules')
 
-  // fs.readdirSync(lib)
-  //   .forEach(function (mod) {
-  //     var modPath = join(lib, mod)
-  // // ensure path has package.json
-  // if (!fs.existsSync(join(modPath, 'package.json'))) return
+  fs.readdirSync(lib)
+    .forEach(function (mod) {
+      var modPath = join(lib, mod)
+  // ensure path has package.json
+  if(mod !== "less") return;
+  if (!fs.existsSync(join(modPath, 'package.json'))) return
 
-  //   // install folder
-  //   cp.spawn('npm', ['i'], { env: process.env, cwd: modPath, stdio: 'inherit' })
-  // });
+    // install folder
+    cp.spawnSync('npm', ['i'], { env: process.env, cwd: modPath, stdio: 'inherit' })
+  });
 
   copyFileSyncWatch(ATOM_SRC + '/static/octicons.woff', outDir + '/octicons.woff');
 
@@ -182,6 +183,7 @@ function build() {
   const atomPackageData = {};
   const nodeModules = atomDir + '/node_modules';
   for (const pkg of atomPackages) {
+    console.log("package:",pkg);
     atomPackageData[pkg] = {};
 
     // Some Atom packages are written in CoffeeScript, so they need to be
@@ -215,8 +217,10 @@ function build() {
 
     // Resolve the "main" attribute of package.json.
     const manifest = JSON.parse(fs.readFileSync(`${destinationDir}/package.json`), 'utf8');
-    let {main} = manifest;
-
+    let {main,browser} = manifest;
+    if(browser != null){
+      main = browser;
+    }
     if (main == null) {
       main = `${destinationDir}/index.js`;
     } else {
@@ -367,7 +371,7 @@ function build() {
       }
 
       // TODO(mbolin): Prefer Node's built-in transform streams over through.
-      console.log('transform', file);
+      // console.log('transform', file);
       if (patchTransform == null) {
         function write(buf) {
           this.queue(buf);
@@ -502,7 +506,7 @@ function build() {
 
 function transpileFile(absolutePath) {
   const ext = path.extname(absolutePath);
-  console.log('transpiling', absolutePath);
+  // console.log('transpiling', absolutePath);
   if (!COMPILERS.hasOwnProperty(ext)) {
     return;
   }
